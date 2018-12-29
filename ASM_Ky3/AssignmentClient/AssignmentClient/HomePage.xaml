@@ -5,9 +5,12 @@
     xmlns:local="using:AssignmentClient"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Windows.UI.Xaml.Controls"
+ 
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <!-- xmlns:muxc="using:Microsoft.UI.Xaml.Controls" -->
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -22,15 +25,61 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <NavigationView x:Name="NavView"                 
+        
+        <NavigationView x:Name="NavView"
+                    ItemInvoked="NavView_ItemInvoked"
                     IsSettingsVisible="False"
                     Loaded="NavView_Loaded"
-                    BackRequested="NavView_BackRequested" IsPaneOpen="False">
+                    BackRequested="NavView_BackRequested" IsPaneOpen="True">
+
+            
+            <NavigationView.PaneFooter>
+                <NavigationViewItem Icon="Home" Content="Logout" Tag="logout" x:Name="Logout" Foreground="Red">
+                </NavigationViewItem>
+            </NavigationView.PaneFooter>
             <NavigationView.MenuItems>
-                <NavigationViewItem  x:Name="report" Tag="report" Icon="People" Content="Report" ToolTipService.ToolTip="Report"/>
-                <NavigationViewItem x:Name="profile" Tag="profile" Icon="OpenWith" Content="Profile" ToolTipService.ToolTip="Profile"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="30" Source="/Assets/img_210318.png">
+                    </Image>
+                    <StackPanel>
+                        <TextBlock Margin="10, 0, 0, 0" Text="Full Name"/>
+                        <TextBlock Margin="10, 0, 0, 0" Text="D00544"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+                <NavigationViewItemSeparator>
+                    
+                </NavigationViewItemSeparator>
+                <NavigationViewItem Icon="list" Content="Report" Tag="report" x:Name="Report" ToolTipService.ToolTip="Report"/>
+                <NavigationViewItem Icon="tag" Content="Profile" Tag="profile" x:Name="Profile" ToolTipService.ToolTip="Profile"/>
             </NavigationView.MenuItems>
+            <NavigationView.AutoSuggestBox>
+           <AutoSuggestBox x:Name="ASB" QueryIcon="Find"/>
+            </NavigationView.AutoSuggestBox>
+            <NavigationView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="24,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                           FontSize="28"
+                           VerticalAlignment="Center"
+                           />
+                        <CommandBar Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            DefaultLabelPosition="Right"
+                            Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+                        </CommandBar>
+                    </Grid>
+                </DataTemplate>
+            </NavigationView.HeaderTemplate>
+
             <Frame x:Name="ContentFrame" Margin="20"/>
         </NavigationView>
+
+       
     </Grid>
 </Page>

@@ -13,6 +13,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using AssignmentClient.Frames;
+using Windows.UI.Xaml.Media.Animation;
+
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,11 +31,17 @@ namespace AssignmentClient
         {
             this.InitializeComponent();
         }
+
+        // Add "using" for WinUI controls.
+        // using muxc = Microsoft.UI.Xaml.Controls;
+
         private Type currentPage;
+
         // List of ValueTuple holding the Navigation Tag and the relative Navigation Page 
         private readonly IList<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
         {
-            ("report", typeof(Report.ListClass))
+            ("report", typeof(Dashboard)),
+            ("profile", typeof(Profile)),
         };
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
